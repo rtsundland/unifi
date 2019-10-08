@@ -2,7 +2,7 @@
 #
 # cloudflare-dyndns.sh for Unifi Security Gateway (USG)
 # Github:  https://github.com/rtsundland/unifi
-# Author:  Ray Sundland (raymond@sundland.com)
+# Author:  Ray Sundland <raymond@sundland.com>
 #
 # NOTE NOTE NOTE NOTE
 # Requires lib/getifaddr script (available here, too)
