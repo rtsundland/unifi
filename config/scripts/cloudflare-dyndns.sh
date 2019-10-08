@@ -1,6 +1,12 @@
 #!/usr/bin/env /bin/bash
 #
 # cloudflare-dyndns.sh for Unifi Security Gateway (USG)
+#
+# Uses the Cloudflare API to update host records within a domain
+# to the IP address of specified interface (eth0 by default).
+# Creation of API key and setting proper permissions using
+# Cloudflare's site is required
+#
 # Github:  https://github.com/rtsundland/unifi
 # Author:  Ray Sundland <raymond@sundland.com>
 #
