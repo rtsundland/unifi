@@ -1,0 +1,35 @@
+{
+        "system": {
+                "task-scheduler": {
+                        "task": {
+                                "tunnelbroker": {
+                                        "crontab-spec": "2-59/5 * * * *",
+                                        "executable": {
+                                                "path": "/config/scripts/tunnelbroker-endpoint.sh",
+                                                "arguments": "eth0 tun0"  # may need to change this
+                                        }
+                                }
+                        }
+                }
+        },
+        "interfaces": {
+                "tunnel": {
+                        "tun0": {
+                                "address": "<YOUR-IPV6-ENDPOINT-PROVIDED-BY-TUNNELBROKER>",
+                                "description": "HE.NET IPv6 Tunnel",
+                                "encapsulation": "sit",
+                                "local-ip": "127.0.0.1",  # leave this set to 127.0.0.1, tunnelbroker-endpoint.sh will set it
+                                "remote-ip": "<TUNNEL-ENDPOINT-PROVIDED-BY-TUNNELBROKER>"
+                        }
+                }
+        },
+        "protocols": {
+                "static": {
+                        "interface-route6": {
+                                "::/0": {
+                                        "next-hop-interface": "tun0"
+                                }
+                        }
+                }
+        }
+}
