@@ -1,0 +1,15 @@
+{
+        "system": {
+                "task-scheduler": {
+                        "task": {
+                                "cloudflare": {
+                                        "crontab-spec": "3-59/5 * * * *",
+                                        "executable": {
+                                                "arguments": "-n your.hostname.com -t a -i eth0",
+                                                "path": "/config/scripts/cloudflare-dyndns.sh"
+                                        }
+                                }
+                        }
+                }
+        }
+}
