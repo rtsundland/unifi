@@ -1,0 +1,31 @@
+#!/usr/bin/env /bin/bash
+#
+# Title: getifaddr for Unifi Security Gateway (USG)
+# Github:  https://github.com/rtsundland/unifi
+# Author:  Ray Sundland <raymond@sundland.com>
+#
+# Retrieves the address(es) of an interface, defaults to ipv4 but you can grab
+# ipv6 by passing -6 to the command line.
+#
+# Usage:
+#   $0 [-6] <local-interface> <tunnel-interface>
+#
+# Example:
+#   $0 -6 eth0 tun0
+#
+
+type="inet"
+while getopts ":6" opt
+do      case "${opt}" in
+                6) type="inet6";;
+        esac
+done
+shift $(( $OPTIND - 1 ))
+
+if=$1; shift
+
+/opt/vyatta/bin/vyatta-op-cmd-wrapper show interfaces ethernet ${if} \
+        | egrep "^\s+${type} " \
+        | awk '{print $2}' \
+        | awk -F'/' '{print $1}' \
+        | grep -v '^(fe80:|169\.254\.)'
